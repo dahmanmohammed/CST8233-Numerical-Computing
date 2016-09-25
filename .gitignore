@@ -27,3 +27,10 @@
 *.exe
 *.out
 *.app
+
+# VS 2013
+*.log
+*.tlog
+*.idb
+*.pdb
+*.ilk
