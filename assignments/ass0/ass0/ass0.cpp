@@ -3,7 +3,7 @@ Filename:			ass0.cpp
 Version: 			1.0
 Author:				Lucas Estienne
 Student No:  		040 819 959
-Course Name/Number:	Numerical Computing CST8233
+Course Name/Number:	Numerical Computing CST8233 / C++ Programming CST8219
 Lab Sect: 			300
 Assignment #:		0
 Assignment name:	Vector Graphics
@@ -252,8 +252,9 @@ void CleanUpVectorGraphic(VectorGraphic* pImage){
 	for (i = 0; i < pImage->numGraphicElements; i++){ /* frees every pLines line array in the GraphicElements */
 		tl = pImage->pElements[i].pLines;
 		free(tl);
-		tl = NULL;
+		tl = NULL; /* dangling pointer */
 	}
-	
-	free(pImage->pElements); /* frees pElements */
+	if (pImage->pElements) free(pImage->pElements); /* frees pElements */
+	pImage->pElements = NULL; /* dangling pointer */
+	pImage = NULL; /* dangling pointer */
 }
